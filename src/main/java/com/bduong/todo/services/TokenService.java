@@ -3,14 +3,14 @@ package com.bduong.todo.services;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
+import lombok.AllArgsConstructor;
+
 import java.time.Instant;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 import org.springframework.stereotype.Service;
 
 import com.bduong.todo.dtos.responses.Principal;
-import com.bduong.todo.entities.Task;
 import com.bduong.todo.utils.JwtConfig;
 import com.bduong.todo.utils.custom_exceptions.InvalidTokenException;
 
@@ -18,13 +18,9 @@ import com.bduong.todo.utils.custom_exceptions.InvalidTokenException;
  * A service class for managing JWT tokens in a Spring Boot application.
  */
 @Service
+@AllArgsConstructor
 public class TokenService {
-
   private final JwtConfig jwtConfig;
-
-  public TokenService(JwtConfig jwtConfig) {
-    this.jwtConfig = jwtConfig;
-  }
 
   /**
    * Generates a JWT token for the provided Principal.
