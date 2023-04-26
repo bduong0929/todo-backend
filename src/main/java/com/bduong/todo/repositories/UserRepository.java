@@ -11,4 +11,7 @@ import com.bduong.todo.entities.User;
 public interface UserRepository extends JpaRepository<User, String> {
   // Get user by username
   Optional<User> findByUsername(String username);
+
+  // Get user by id
+  Optional<User> findById(Long id);
 }

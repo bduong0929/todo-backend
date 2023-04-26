@@ -30,13 +30,13 @@ public class User {
   @Id
   private String id;
 
-  @Column(name = "username")
+  @Column(name = "username", nullable = false, unique = true)
   private String username;
 
-  @Column(name = "password")
+  @Column(name = "password", nullable = false)
   private byte[] password;
 
-  @Column(name = "salt")
+  @Column(name = "salt", nullable = false)
   private byte[] salt;
 
   @JsonManagedReference

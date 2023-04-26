@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,16 +22,15 @@ import com.bduong.todo.utils.custom_exceptions.InvalidAuthException;
 import com.bduong.todo.utils.custom_exceptions.InvalidTokenException;
 import com.bduong.todo.utils.custom_exceptions.UserNotFoundException;
 
+import lombok.AllArgsConstructor;
+
+@CrossOrigin
 @RestController
+@AllArgsConstructor
 @RequestMapping("/auth")
 public class AuthController {
   private final UserService userService;
   private final TokenService tokenService;
-
-  public AuthController(UserService userService, TokenService tokenService) {
-    this.userService = userService;
-    this.tokenService = tokenService;
-  }
 
   /**
    * Registers a new user

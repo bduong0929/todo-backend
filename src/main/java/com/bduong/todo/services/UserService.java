@@ -10,15 +10,13 @@ import com.bduong.todo.entities.User;
 import com.bduong.todo.repositories.UserRepository;
 import com.bduong.todo.utils.custom_exceptions.UserNotFoundException;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class UserService {
   private final UserRepository userRepo;
   private final SecurityService securityService;
-
-  public UserService(UserRepository userRepo, SecurityService securityService) {
-    this.userRepo = userRepo;
-    this.securityService = securityService;
-  }
 
   /**
    * Register a user
@@ -101,5 +99,15 @@ public class UserService {
    */
   public boolean isSamePassword(String p1, String p2) {
     return p1.equals(p2);
+  }
+
+  /**
+   * Get user by id
+   * 
+   * @param userId - id of user to get
+   * @return User object if found, else null
+   */
+  public Optional<User> getUserById(String userId) {
+    return userRepo.findById(userId);
   }
 }

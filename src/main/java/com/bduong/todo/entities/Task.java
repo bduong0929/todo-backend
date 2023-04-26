@@ -1,5 +1,9 @@
 package com.bduong.todo.entities;
 
+import java.util.UUID;
+
+import com.bduong.todo.dtos.requests.NewTaskRequest;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -24,16 +28,20 @@ public class Task {
   @Id
   private String id;
 
-  @Column(name = "title")
+  @Column(name = "title", nullable = false)
   private String title;
 
-  @Column(name = "description")
-  private String description;
-
-  @Column(name = "completed")
+  @Column(name = "completed", nullable = false)
   private boolean completed;
 
   @ManyToOne
   @JoinColumn(name = "user_id", referencedColumnName = "id")
   private User user;
+
+  public Task(NewTaskRequest req, User user) {
+    this.id = UUID.randomUUID().toString();
+    this.title = req.getTitle();
+    this.completed = false;
+    this.user = user;
+  }
 }
